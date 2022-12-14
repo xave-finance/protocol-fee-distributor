@@ -11,7 +11,7 @@ contract ETHProtocolFeesDistributor {
 
     function disperseFees(IERC20 token) external {
         uint256 tokenBalance = token.balanceOf(address(this));
-        require(tokenBalance > 0, 'FeesDistributor/zero-balance: Contract has zero balance for specified token');
+        require(tokenBalance > 0, 'FeesDistributor/zero-balance');
 
         uint256 balancerProfit = tokenBalance / 2;
         uint256 xaveProfit = tokenBalance / 2;
