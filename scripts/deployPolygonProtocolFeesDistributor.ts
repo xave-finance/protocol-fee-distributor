@@ -1,12 +1,15 @@
 import { ethers } from 'hardhat'
 const hre = require('hardhat')
 import sleep from './utils/sleep'
+import { getLedgerSigner } from './utils/ledger-signer'
 
 const deploy = async () => {
-  const [deployer] = await ethers.getSigners()
-  console.log(`Deploying with account: ${deployer.address}`)
+  const ledgerSigner = await getLedgerSigner()
 
-  const ProtocolFeesDistributorFactory = await ethers.getContractFactory('PolygonProtocolFeesDistributor')
+  console.log(`Deploying with account: ${await ledgerSigner.getAddress()}`)
+
+  // const ProtocolFeesDistributorFactory = await ethers.getContractFactory('PolygonProtocolFeesDistributor')
+  const ProtocolFeesDistributorFactory = await (await ethers.getContractFactory('ETHProtocolFeesDistributor')).connect(ledgerSigner)
   const protocolFeesDistributor = await ProtocolFeesDistributorFactory.deploy()
   await protocolFeesDistributor.deployed()
   console.log(`protocolFeesDistributor deployed at: ${protocolFeesDistributor.address}`)

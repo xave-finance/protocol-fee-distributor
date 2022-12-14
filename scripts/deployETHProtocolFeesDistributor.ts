@@ -4,13 +4,12 @@ import sleep from './utils/sleep'
 import { getLedgerSigner } from './utils/ledger-signer'
 
 const deploy = async () => {
-  const [deployer] = await ethers.getSigners()
-  console.log(`Deploying with account: ${deployer.address}`)
+  const ledgerSigner = await getLedgerSigner()
 
-  // const ledgerSigner = await getLedgerSigner()
-  // const ProtocolFeesDistributorFactory = await (await ethers.getContractFactory('ETHProtocolFeesDistributor')).connect(ledgerSigner)
+  console.log(`Deploying with account: ${await ledgerSigner.getAddress()}`)
 
-  const ProtocolFeesDistributorFactory = await await ethers.getContractFactory('ETHProtocolFeesDistributor')
+  // const ProtocolFeesDistributorFactory = await await ethers.getContractFactory('ETHProtocolFeesDistributor')
+  const ProtocolFeesDistributorFactory = await (await ethers.getContractFactory('ETHProtocolFeesDistributor')).connect(ledgerSigner)
   const protocolFeesDistributor = await ProtocolFeesDistributorFactory.deploy()
   await protocolFeesDistributor.deployed()
   console.log(`protocolFeesDistributor deployed at: ${protocolFeesDistributor.address}`)
