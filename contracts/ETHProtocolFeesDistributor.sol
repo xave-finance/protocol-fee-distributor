@@ -9,15 +9,15 @@ contract ETHProtocolFeesDistributor {
 
     event FeesCollected(uint256 xaveProfit, uint256 balancerProfit);
 
-    function disperseFees(IERC20 token) external {
-        uint256 tokenBalance = token.balanceOf(address(this));
+    function disperseFees(address token) external {
+        uint256 tokenBalance = IERC20(token).balanceOf(address(this));
         require(tokenBalance > 0, 'FeesDistributor/zero-balance');
 
         uint256 balancerProfit = tokenBalance / 2;
         uint256 xaveProfit = tokenBalance / 2;
 
-        token.transfer(BALANCER_FEE_COLLECTOR, balancerProfit);
-        token.transfer(XAVE_FEES_COLLECTOR, xaveProfit);
+        IERC20(token).transfer(BALANCER_FEE_COLLECTOR, balancerProfit);
+        IERC20(token).transfer(XAVE_FEES_COLLECTOR, xaveProfit);
 
         emit FeesCollected(xaveProfit, balancerProfit);
     }
