@@ -4,7 +4,6 @@ import { solidity } from 'ethereum-waffle'
 
 import { PolygonProtocolFeesDistributor } from '../typechain/PolygonProtocolFeesDistributor'
 import { ERC20Token } from '../typechain/ERC20Token'
-import exp from 'constants'
 
 chai.use(solidity)
 
@@ -45,7 +44,7 @@ describe('Polygon Protocol Fees Distributor', () => {
 
     expect(protocolFeesDistributor.disperseFees(token.address))
       .to.emit(protocolFeesDistributor, 'FeesCollected')
-      .withArgs(FITY_PERCENT, FITY_PERCENT)
+      .withArgs(FITY_PERCENT, FITY_PERCENT, token.address)
 
     expect(await token.balanceOf(BALANCER_FEE_COLLECTOR)).to.equal(FITY_PERCENT)
     expect(await token.balanceOf(XAVE_FEES_COLLECTOR)).to.equal(FITY_PERCENT)

@@ -7,7 +7,7 @@ contract PolygonProtocolFeesDistributor {
     address immutable BALANCER_FEE_COLLECTOR = 0xce88686553686DA562CE7Cea497CE749DA109f9F;
     address immutable XAVE_FEES_COLLECTOR = 0x5560659d9a4aB330dE2112fc8Ee0989857197728;
 
-    event FeesCollected(uint256 xaveProfit, uint256 balancerProfit);
+    event FeesCollected(uint256 xaveProfit, uint256 balancerProfit, address token);
 
     function disperseFees(address token) external {
         uint256 tokenBalance = IERC20(token).balanceOf(address(this));
@@ -19,6 +19,6 @@ contract PolygonProtocolFeesDistributor {
         IERC20(token).transfer(BALANCER_FEE_COLLECTOR, balancerProfit);
         IERC20(token).transfer(XAVE_FEES_COLLECTOR, xaveProfit);
 
-        emit FeesCollected(xaveProfit, balancerProfit);
+        emit FeesCollected(xaveProfit, balancerProfit, token);
     }
 }
