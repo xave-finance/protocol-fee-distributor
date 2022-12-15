@@ -14,7 +14,7 @@ const BALANCER_FEE_COLLECTOR = '0xce88686553686DA562CE7Cea497CE749DA109f9F'
 const XAVE_FEES_COLLECTOR = '0x5560659d9a4aB330dE2112fc8Ee0989857197728'
 
 const TOKENS_HELD_IN_PROTOCOL_FEES_DISTRIBUTER = ethers.utils.parseEther('100')
-const FITY_PERCENT = ethers.utils.parseEther('50')
+const FIFTY_PERCENT = ethers.utils.parseEther('50')
 const ZERO = ethers.utils.parseEther('0')
 
 describe('Polygon Protocol Fees Distributor', () => {
@@ -44,10 +44,10 @@ describe('Polygon Protocol Fees Distributor', () => {
 
     expect(protocolFeesDistributor.disperseFees(token.address))
       .to.emit(protocolFeesDistributor, 'FeesCollected')
-      .withArgs(FITY_PERCENT, FITY_PERCENT, token.address)
+      .withArgs(FIFTY_PERCENT, FIFTY_PERCENT, token.address)
 
-    expect(await token.balanceOf(BALANCER_FEE_COLLECTOR)).to.equal(FITY_PERCENT)
-    expect(await token.balanceOf(XAVE_FEES_COLLECTOR)).to.equal(FITY_PERCENT)
+    expect(await token.balanceOf(BALANCER_FEE_COLLECTOR)).to.equal(FIFTY_PERCENT)
+    expect(await token.balanceOf(XAVE_FEES_COLLECTOR)).to.equal(FIFTY_PERCENT)
     expect(await token.balanceOf(protocolFeesDistributor.address)).to.equal(ZERO)
   })
 })
