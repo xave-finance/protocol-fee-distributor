@@ -33,9 +33,7 @@ describe('Polygon Protocol Fees Distributor', () => {
   })
 
   it('should not disperse when Protocol Fees Distributor has zero balance of provided token', async () => {
-    expect(protocolFeesDistributor.disperseFees(token.address)).to.be.revertedWith(
-      'Contract has zero balance for specified token'
-    )
+    expect(protocolFeesDistributor.disperseFees(token.address)).to.be.revertedWith('FeesDistributor/zero-balance')
   })
 
   it('should disperse fees amounting 50% to Balancer Fees Collector and 50% to Xave Treasury', async () => {
