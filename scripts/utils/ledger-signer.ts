@@ -9,9 +9,6 @@ export const setDRE = (_DRE: HardhatRuntimeEnvironment | BuidlerRuntimeEnvironme
 }
 
 export const getLedgerSigner = async (): Promise<Signer> => {
-  // Create a Frame connection
-  // const frame = ethProvider('frame') // Connect to Frame
-
   const framerRPC = 'http://127.0.0.1:1248'
 
   const ledgerProvider = await new DRE.ethers.providers.JsonRpcProvider(framerRPC)
