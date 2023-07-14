@@ -13,6 +13,7 @@
     "recompile": "rm -rf artifacts && rm -rf cache && npx hardhat compile",
     "deploy:fees-distributor:eth": "npx hardhat run scripts/deployETHProtocolFeesDistributor.ts --network mainnet",
     "deploy:fees-distributor:polygon": "npx hardhat run scripts/deployPolygonProtocolFeesDistributor.ts --network matic",
+    "deploy:fees-distributor:avax": "npx hardhat run scripts/deployAvalancheProtocolFeesDistributor.ts --network avax",
     "prettify": "npx prettier --write ."
   },
   "devDependencies": {
