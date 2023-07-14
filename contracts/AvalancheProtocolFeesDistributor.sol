@@ -3,9 +3,9 @@ pragma solidity =0.8.6;
 
 import {IERC20} from '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 
-contract ETHProtocolFeesDistributor {
+contract AvalancheProtocolFeesDistributor {
     address immutable BALANCER_FEE_COLLECTOR = 0xce88686553686DA562CE7Cea497CE749DA109f9F;
-    address immutable XAVE_FEES_COLLECTOR = 0xA670629924234B5427dB9B7e0BC52C0f19a81E6d;
+    address immutable XAVE_FEES_COLLECTOR = 0xD6D88a8C4970CAd9D734872cc3fE94a5A05BeDC8;
 
     event FeesCollected(uint256 xaveProfit, uint256 balancerProfit, address token);
 

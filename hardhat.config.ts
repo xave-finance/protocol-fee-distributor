@@ -10,6 +10,7 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ''
 const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || ''
 const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY || ''
 const MNEMONIC_SEED = process.env.MNEMONIC || ''
+const AVALANCHE_API_KEY = process.env.AVALANCHE_API_KEY || ''
 
 export default {
   gasReporter: {
@@ -38,13 +39,21 @@ export default {
       },
       minGasPrice: 10000000000000,
     },
+    avax: {
+      url: process.env.AVAX_RPC_URL,
+      accounts: {
+        mnemonic: MNEMONIC_SEED,
+      },
+      minGasPrice: 10000000000000,
+    },
     localhost: {
       chainId: 1337,
       url: 'http://127.0.0.1:8545/',
     },
   },
   etherscan: {
-    apiKey: ETHERSCAN_API_KEY,
+    // apiKey: ETHERSCAN_API_KEY,
     // apiKey: POLYGONSCAN_API_KEY,
+    apiKey: AVALANCHE_API_KEY,
   },
 }
